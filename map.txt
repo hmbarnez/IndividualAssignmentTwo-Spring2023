@@ -1,42 +1,6 @@
-1
-2
-0
-0
-0
-true
-Medical-bay: Starting room
-2
-5
-1
-4
-3
-false
-Main Hall
-3
-0
-0
-2
-0
-false
-Living Quarters
-4
-0
-0
-0
-2
-false
-Cargo Bay
-5
-6
-2
-0
-0
-false
-Viewing Deck
-6
-0
-5
-0
-0
-false
-Cockpit
+1~2~0~0~0~true~Medical-bay
+2~5~1~4~3~false~Main Hall
+3~0~0~2~0~false~Living Quarters
+4~0~0~0~2~false~Cargo Bay
+5~6~2~0~0~false~Viewing Deck
+6~0~5~0~0~false~Cockpit

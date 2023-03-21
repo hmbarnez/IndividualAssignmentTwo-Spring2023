@@ -3,20 +3,17 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game {
-    //intro message I put up here in case I wanted to edit it later
-    static final String introMessage = "You wake up in a seemingly empty space station ...\nThe room appears to be a ";
+
     public static void main(String[] args) {
         //reading the map.txt file and creating the arraylist of rooms
         Map map = new Map("map.txt");
-        ArrayList<Room> rooms = map.createRooms();
+        ArrayList<Room> rooms = map.readRooms();
 
         //player object creation mainly for later projects not really used now
         Player p1 = new Player("p1",rooms);
 
-        //This part is unnecessary right now, but if a different map is put in, this line will only use the name for intro message
-        String[] introRoomName = rooms.get(0).getRoomDescription().split(": ");
-        System.out.println(introMessage+ introRoomName[0]);
-
+        //print starting room description
+        System.out.println(rooms.get(0).getRoomDescription());
         //scanner for user input
         Scanner scan = new Scanner(System.in);
 

@@ -3,7 +3,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-//map class only used for reading the text file and returning array list of rooms
+//map class only used for reading the text file and returning array list rooms/items/puzzles
 public class Map {
     private String path;
     public Map(String path) {
@@ -11,19 +11,21 @@ public class Map {
     }
 
     //createRooms returns an Array List of rooms after reading the file
-    public ArrayList<Room> createRooms(){
+    public ArrayList<Room> readRooms(){
         ArrayList<Room> roomsList = new ArrayList<>();
         try {
             Scanner scan = new Scanner(new File(this.path));
             while(scan.hasNextLine()){
-                int roomID = Integer.parseInt(scan.nextLine());
                 int[] directions = new int[4];
-                directions[0] = Integer.parseInt(scan.nextLine());
-                directions[1] = Integer.parseInt(scan.nextLine());
-                directions[2] = Integer.parseInt(scan.nextLine());
-                directions[3] = Integer.parseInt(scan.nextLine());
-                boolean isVisited = Boolean.parseBoolean(scan.nextLine());
-                String roomDesc = scan.nextLine();
+                String roomInfo = scan.nextLine();
+                String[] roomArray = roomInfo.split("~");
+                int roomID = Integer.parseInt(roomArray[0]);
+                directions[0] = Integer.parseInt(roomArray[1]);
+                directions[1] = Integer.parseInt(roomArray[2]);
+                directions[2] = Integer.parseInt(roomArray[3]);
+                directions[3] = Integer.parseInt(roomArray[4]);
+                boolean isVisited = Boolean.parseBoolean(roomArray[5]);
+                String roomDesc = roomArray[6];
                 roomsList.add(new Room(roomID,directions,isVisited,roomDesc));
             }
         } catch (FileNotFoundException e) {
