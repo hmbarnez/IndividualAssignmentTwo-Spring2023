@@ -38,6 +38,9 @@ public class Player {
             currentRoom = rooms.get(this.getCurrentRoomID() - 1);
             //prints the description of the room being moved to
             System.out.println(currentRoom.getRoomDescription() + " "+currentRoom.getRoomId());
+
+            //test to print room inventory
+
             //check to see if the room has been visited
             if (currentRoom.isVisited()){
                 System.out.println("This room is familiar...");

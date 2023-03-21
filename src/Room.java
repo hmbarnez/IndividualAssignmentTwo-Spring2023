@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Room {
@@ -5,13 +6,14 @@ public class Room {
     public int roomDirections[];
     private boolean isVisited;
     private String roomDescription;
+   private ArrayList<Item> roomInventory;
 
-
-    public Room(int roomId, int[] roomDirections, boolean isVisited, String roomDescription) {
+    public Room(int roomId, int[] roomDirections, boolean isVisited, String roomDescription, ArrayList<Item> roomInventory) {
         this.roomId = roomId;
         this.roomDirections = roomDirections;
         this.isVisited = isVisited;
         this.roomDescription = roomDescription;
+        this.roomInventory = roomInventory;
     }
 
     @Override
@@ -21,6 +23,7 @@ public class Room {
                 ", roomDirections=" + Arrays.toString(roomDirections) +
                 ", isVisited=" + isVisited +
                 ", roomDescription='" + roomDescription + '\'' +
+                ", roomInventory=" + roomInventory +
                 '}';
     }
 

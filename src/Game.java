@@ -6,7 +6,7 @@ public class Game {
 
     public static void main(String[] args) {
         //reading the map.txt file and creating the arraylist of rooms
-        Map map = new Map("map.txt");
+        Map map = new Map();
         ArrayList<Room> rooms = map.readRooms();
 
         //player object creation mainly for later projects not really used now
