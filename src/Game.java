@@ -25,35 +25,54 @@ public class Game {
         while(!gameOver){
             System.out.println("\n------------------------------------------------------");
             System.out.println("Enter direction to move (N,S,E,W) or 'Exit' to leave: ");
-            String userInput = scan.nextLine();
+            String userInput = scan.nextLine().toLowerCase();
 
-            switch(userInput.toLowerCase()){
-                case "n":
-                case "s":
-                case "e":
-                case "w":
-                    //checks the room to the north of current room
-                    p1.move(userInput);
-                    break;
-                case "pickup":
-                    p1.pickupItem("Calculator");
-                    System.out.println(p1.playerInventory);
-                    break;
-                case "search":
-                    System.out.println(p1.searchRoom());
-                    break;
-                case "exit":
-                    System.out.println("bye");
-                    gameOver = true;
-                    break;
-                default:
-                    //if user input does not match any of the options
-                    System.out.println("Oops!");
-                    System.out.println("Try to enter that again!");
-                    System.out.println("'N' - 'S' - 'E' - 'W' or 'Exit'");
-
+//            switch(userInput.toLowerCase()){
+//                case "n":
+//                case "s":
+//                case "e":
+//                case "w":
+//                    //checks the room to the north of current room
+//                    p1.move(userInput);
+//                    break;
+//                case "pickup":
+//                    p1.pickupItem("Calculator");
+//                    System.out.println(p1.playerInventory);
+//                    break;
+//                case "explore":
+//                    System.out.println(p1.exploreRoom());
+//                    break;
+//                case "exit":
+//                    System.out.println("bye");
+//                    gameOver = true;
+//                    break;
+//                default:
+//                    //if user input does not match any of the options
+//                    System.out.println("Oops!");
+//                    System.out.println("Try to enter that again!");
+//                    System.out.println("'N' - 'S' - 'E' - 'W' or 'Exit'");
+//
+//            }
+            if(userInput.length() == 1){
+                switch (userInput){
+                    case "n":
+                    case "s":
+                    case "e":
+                    case "w":
+                        p1.move(userInput);
+                        break;
+                    default:
+                        //if user input does not match any of the options
+                        System.out.println("Oops!");
+                        System.out.println("Try to enter that again!");
+                        System.out.println("'N' - 'S' - 'E' - 'W' ");
+                }
+            } else if (userInput.contains("pickup")) {
+                String[] input = userInput.split(" ");
+                p1.pickupItem(input[1]);
+            } else if (userInput.equals("explore")) {
+                p1.printRoomInventory();
             }
-            
 
         }
 

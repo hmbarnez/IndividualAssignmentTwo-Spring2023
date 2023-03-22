@@ -88,10 +88,11 @@ public class Player {
 //        }
 //    }
 
+   // public String
 
-    public ArrayList<Item> searchRoom(){
+    public void printRoomInventory(){
         Room currentRoom = this.rooms.get(this.getCurrentRoomID() - 1);
-        return currentRoom.getRoomInventory();
+        System.out.println(currentRoom.getRoomInventory());
     }
 
 
