@@ -7,16 +7,15 @@ public class Player {
     private int currentRoomID;
     private ArrayList<Room> rooms;
 
+    private ArrayList<Item> playerInventory;
+
     public Player(String name, ArrayList<Room> rooms) {
         this.name = name;
         this.currentRoomID = 1;
         this.rooms = rooms;
+        this.playerInventory = new ArrayList<>();
     }
 
-    //just a setter for the currentRoomID
-//    public void move(int moveToRoomId){
-//        this.currentRoomID = moveToRoomId;
-//    }
 
     public void move(String direction){
         int index = 0;
@@ -40,6 +39,10 @@ public class Player {
             System.out.println(currentRoom.getRoomDescription() + " "+currentRoom.getRoomId());
 
             //test to print room inventory
+            System.out.println(currentRoom.getRoomInventory());
+
+
+            System.out.println(this.playerInventory);
 
             //check to see if the room has been visited
             if (currentRoom.isVisited()){
@@ -52,6 +55,32 @@ public class Player {
 
 
     }
+
+
+    //Item methods
+    public void pickupItem(String nameToPickup){
+        Room room = rooms.get(currentRoomID-1);
+        System.out.println(room.getRoomInventory());
+    }
+
+
+
+
+//    public void dropItem(String nameToDrop){
+//        int id = -1;
+//        Item tempItem;
+//        for (Item x: playerInventory){
+//            id++;
+//            if(x.getItemName().equals(nameToDrop)){
+//                tempItem = playerInventory.get(id);
+//                System.out.println(id);
+//                break;
+//            }
+//        }
+//    }
+
+
+
 
 
     public String getName() {

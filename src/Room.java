@@ -42,4 +42,8 @@ public class Room {
     public String getRoomDescription() {
         return roomDescription;
     }
+
+    public ArrayList<Item> getRoomInventory() {
+        return roomInventory;
+    }
 }

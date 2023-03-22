@@ -11,13 +11,22 @@ public class Item {
         this.itemLocation = itemLocation;
     }
 
+    //getters setters toString
+    //need to clean up
     @Override
     public String toString() {
-        return "Item{" +this.itemName+'}';
+        return this.itemName;
     }
 
     public int getItemLocation() {
         return itemLocation;
     }
 
+    public String getItemName() {
+        return itemName;
+    }
+
+    public int getItemId() {
+        return itemId;
+    }
 }
