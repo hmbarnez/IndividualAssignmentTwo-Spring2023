@@ -35,6 +35,13 @@ public class Game {
                     //checks the room to the north of current room
                     p1.move(userInput);
                     break;
+                case "pickup":
+                    p1.pickupItem("Calculator");
+                    System.out.println(p1.playerInventory);
+                    break;
+                case "search":
+                    System.out.println(p1.searchRoom());
+                    break;
                 case "exit":
                     System.out.println("bye");
                     gameOver = true;

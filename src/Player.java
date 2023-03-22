@@ -7,7 +7,7 @@ public class Player {
     private int currentRoomID;
     private ArrayList<Room> rooms;
 
-    private ArrayList<Item> playerInventory;
+    public ArrayList<Item> playerInventory;
 
     public Player(String name, ArrayList<Room> rooms) {
         this.name = name;
@@ -61,7 +61,16 @@ public class Player {
     public void pickupItem(String nameToPickup){
         Room room = rooms.get(currentRoomID-1);
         System.out.println(room.getRoomInventory());
+        for(Item x: room.getRoomInventory()){
+
+            if(x.getItemName().equals(nameToPickup)){
+                playerInventory.add(x);
+                room.removeItem(x);
+                break;
+            }
+        }
     }
+
 
 
 
@@ -80,7 +89,10 @@ public class Player {
 //    }
 
 
-
+    public ArrayList<Item> searchRoom(){
+        Room currentRoom = this.rooms.get(this.getCurrentRoomID() - 1);
+        return currentRoom.getRoomInventory();
+    }
 
 
     public String getName() {

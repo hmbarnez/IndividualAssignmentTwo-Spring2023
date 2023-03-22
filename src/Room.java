@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 
 public class Room {
     private int roomId;
@@ -25,6 +26,15 @@ public class Room {
                 ", roomDescription='" + roomDescription + '\'' +
                 ", roomInventory=" + roomInventory +
                 '}';
+    }
+
+    public void removeItem(Item item){
+        Iterator<Item> itemIter = roomInventory.iterator();
+        while (itemIter.hasNext()) {
+            if (itemIter.next().getItemName().equals(item.getItemName())) {
+                itemIter.remove();
+            }
+        }
     }
 
     public int getRoomId() {
