@@ -9,10 +9,10 @@ public class Player {
 
     public ArrayList<Item> playerInventory;
 
-    public Player(String name, ArrayList<Room> rooms) {
+    public Player(String name, Map map) {
         this.name = name;
         this.currentRoomID = 1;
-        this.rooms = rooms;
+        this.rooms = map.readRooms();
         this.playerInventory = new ArrayList<>();
     }
 
@@ -20,12 +20,17 @@ public class Player {
     public void move(String direction){
         int index = 0;
         Room currentRoom = this.rooms.get(this.getCurrentRoomID() - 1);
+        //logic here is to 1. set the index to the correct direction to travel to
+        //                 2. if input is not n s e w to display error message
         switch (direction) {
             case "n" -> {}
             case "s" -> index = 1;
             case "e" -> index = 2;
             case "w" -> index = 3;
-            default -> System.err.println("error");
+            default -> {
+                System.out.println("Error! Try: 'N' 'S' 'E' or 'W'!");
+                return;
+            }
         }
 
         if(currentRoom.roomDirections[index] == 0){

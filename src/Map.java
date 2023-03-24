@@ -5,11 +5,10 @@ import java.util.Scanner;
 
 //map class only used for reading the text file and returning array list rooms/items/puzzles
 public class Map {
-    private ArrayList<Room> roomsList;
+    private final ArrayList<Room> roomsList;
     public Map() {
-        this.roomsList = new ArrayList<>();
+        roomsList = new ArrayList<>();
     }
-
     //readRooms returns an Array List of rooms after reading the file
     public ArrayList<Room> readRooms(){
 
@@ -46,10 +45,11 @@ public class Map {
         for (Room x: roomsList){
             System.out.println(x);
         }
+        System.out.println("You are in the "+roomsList.get(0).getRoomDescription());
         return roomsList;
     }
 
-    public ArrayList<Item> readItems(){
+    private ArrayList<Item> readItems(){
         ArrayList<Item> items = new ArrayList<>();
         try {
             Scanner scan = new  Scanner(new File("items.txt"));
