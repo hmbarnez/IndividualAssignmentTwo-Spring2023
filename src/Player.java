@@ -59,40 +59,44 @@ public class Player {
 
     //Item methods
     public void pickupItem(String nameToPickup){
+        //gets current room
         Room room = rooms.get(currentRoomID-1);
-        System.out.println(room.getRoomInventory());
-        for(Item x: room.getRoomInventory()){
-
-            if(x.getItemName().equals(nameToPickup)){
-                playerInventory.add(x);
-                room.removeItem(x);
-                break;
+        //check to see if room is empty
+        if(!room.getRoomInventory().isEmpty()){
+            //flag to see if something actually gets picked up from the room
+            boolean pickedSomethingUp = false;
+            //cycles through room inventory and compares name of item to drop to room inventory item names
+            for(Item x: room.getRoomInventory()){
+                if(x.getItemName().equalsIgnoreCase(nameToPickup.toLowerCase())){
+                    this.playerInventory.add(x);
+                    room.removeItem(x);
+                    System.out.println("You picked up a "+ nameToPickup +"!");
+                    pickedSomethingUp = true;
+                    break;
+                }
             }
+            //if nothing gets picked up after loop print this message
+            if (!pickedSomethingUp)
+                System.out.println("That item does not exist in this room!");
+        }else {
+            System.out.println("There is nothing in this room!");
         }
+
     }
 
 
 
 
 
-//    public void dropItem(String nameToDrop){
-//        int id = -1;
-//        Item tempItem;
-//        for (Item x: playerInventory){
-//            id++;
-//            if(x.getItemName().equals(nameToDrop)){
-//                tempItem = playerInventory.get(id);
-//                System.out.println(id);
-//                break;
-//            }
-//        }
-//    }
-
    // public String
 
     public void printRoomInventory(){
         Room currentRoom = this.rooms.get(this.getCurrentRoomID() - 1);
         System.out.println(currentRoom.getRoomInventory());
+    }
+
+    public void printPlayerInventory(){
+        System.out.println(this.playerInventory);
     }
 
 

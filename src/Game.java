@@ -1,4 +1,5 @@
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -27,32 +28,7 @@ public class Game {
             System.out.println("Enter direction to move (N,S,E,W) or 'Exit' to leave: ");
             String userInput = scan.nextLine().toLowerCase();
 
-//            switch(userInput.toLowerCase()){
-//                case "n":
-//                case "s":
-//                case "e":
-//                case "w":
-//                    //checks the room to the north of current room
-//                    p1.move(userInput);
-//                    break;
-//                case "pickup":
-//                    p1.pickupItem("Calculator");
-//                    System.out.println(p1.playerInventory);
-//                    break;
-//                case "explore":
-//                    System.out.println(p1.exploreRoom());
-//                    break;
-//                case "exit":
-//                    System.out.println("bye");
-//                    gameOver = true;
-//                    break;
-//                default:
-//                    //if user input does not match any of the options
-//                    System.out.println("Oops!");
-//                    System.out.println("Try to enter that again!");
-//                    System.out.println("'N' - 'S' - 'E' - 'W' or 'Exit'");
-//
-//            }
+            //single input commands first
             if(userInput.length() == 1){
                 switch (userInput){
                     case "n":
@@ -67,11 +43,26 @@ public class Game {
                         System.out.println("Try to enter that again!");
                         System.out.println("'N' - 'S' - 'E' - 'W' ");
                 }
+            } else if (userInput.equals("explore")) { //explore command prints current room inventory
+                p1.printRoomInventory();
+            } else if (userInput.equals("exit")) { //exit command ends game
+                System.out.println("bye");
+                gameOver = true;
+
+            // two input commands
+            } else if(userInput.equals("inventory")){
+                p1.printPlayerInventory();
             } else if (userInput.contains("pickup")) {
                 String[] input = userInput.split(" ");
-                p1.pickupItem(input[1]);
-            } else if (userInput.equals("explore")) {
-                p1.printRoomInventory();
+                if(input.length == 2){
+                    p1.pickupItem(input[1]);
+                }else {
+                    System.out.println("Double check you inputs and try that command again!");
+                }
+
+            }else{
+                System.out.println("That command doesn't exist!");
+                System.out.println("Try again!");
             }
 
         }
