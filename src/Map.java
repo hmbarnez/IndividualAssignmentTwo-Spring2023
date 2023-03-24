@@ -15,6 +15,7 @@ public class Map {
         try {
             Scanner scan = new Scanner(new File("map.txt"));
             ArrayList<Item> items = readItems();
+            ArrayList<Puzzle> puzzles = readPuzzles();
             while(scan.hasNextLine()){
                 int[] directions = new int[4];
                 String[] roomArray = scan.nextLine().split("~");
@@ -34,7 +35,6 @@ public class Map {
                         tempItems.add(x);
 
                     }
-
                 }
 
                 roomsList.add(new Room(roomId,directions,isVisited,roomDesc,tempItems));
@@ -42,9 +42,9 @@ public class Map {
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
-        for (Room x: roomsList){
-            System.out.println(x);
-        }
+//        for (Room x: roomsList){
+//            System.out.println(x);
+//        }
         System.out.println("You are in the "+roomsList.get(0).getRoomDescription());
         return roomsList;
     }
@@ -66,6 +66,25 @@ public class Map {
             System.out.println(e.getMessage());
         }
         return items;
+    }
+
+    private ArrayList<Puzzle> readPuzzles(){
+        ArrayList<Puzzle> puzzles = new ArrayList<>();
+        try {
+            Scanner scan = new  Scanner(new File("puzzles.txt"));
+            while(scan.hasNextLine()){
+                String[] lineSplit = scan.nextLine().split("~");
+                int puzzId = Integer.parseInt(lineSplit[0]);
+                String puzzName = lineSplit[1];
+                String puzzDesc = lineSplit[2];
+                String puzzAns = lineSplit[3];
+                int numAttempts = Integer.parseInt(lineSplit[4]);
+                puzzles.add(new Puzzle(puzzId,puzzName,puzzDesc,puzzAns,numAttempts));
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+        return puzzles;
     }
 
 }

@@ -43,8 +43,8 @@ public class Player {
             //prints the description of the room being moved to
             System.out.println(currentRoom.getRoomDescription() + " "+currentRoom.getRoomId());
 
-            //TEST ITEMS AND PUZZLES HERE
-
+            //TEST PUZZLES HERE
+            //if(currentRoom.)
 
             //check to see if the room has been visited
             if (currentRoom.isVisited()){
