@@ -29,36 +29,13 @@ public class Game {
             } else if (userInput.equals("inventory")) { //
                 p1.printPlayerInventory();
 
-
-                // two input commands
-            } else if (userInput.contains("pickup")) { //TODO !! ADD A SPACE TO THE END OF THE STRING AND REMOVE BAD LOGIC
-                //I can move this logic into the pickup command but I like it more here I think
-                String[] input = userInput.split(" ", 2);
-                //if the input is only one word this displays a message to try again
-                if (!(input.length == 1)) {
-                    p1.pickupItem(input[1]);
-                } else {
-                    System.out.println("Double check you inputs and try that command again!");
-                }
+            // two input commands
+            } else if (userInput.contains("pickup")) {
+                p1.pickupItem(splitInput(userInput));
             } else if (userInput.contains("drop")) {
-                //I can move this logic into the pickup command but I like it more here I think
-                String[] input = userInput.split(" ", 2);
-                //if the input is only one word this displays a message to try again
-                if (!(input.length == 1)) {
-                    p1.dropItem(input[1]);
-                } else {
-                    System.out.println("Double check you inputs and try that command again!");
-                }
+                p1.dropItem(splitInput(userInput));
             }else if(userInput.contains("inspect")){
-                String[] input = userInput.split(" ", 2);
-                //if the input is only one word this displays a message to try again
-                if (!(input.length == 1)) {
-                    p1.inspectItem(input[1]);
-                } else {
-                    System.out.println("Double check you inputs and try that command again!");
-                }
-
-
+                p1.inspectItem(splitInput(userInput));
 
 
             }else{
@@ -67,9 +44,12 @@ public class Game {
             }
 
         }
+    }
 
-
-
-
+    // probably a better existing method but this just split the input in 2 parts after the first word
+    //created for items that are two words iq
+    public static String splitInput(String input){
+        String[] splitput = input.split(" ",2);
+        return splitput[1];
     }
 }

@@ -59,6 +59,7 @@ public class Player {
 
     //Item methods
     public void pickupItem(String nameToPickup){
+
         //gets current room
         Room room = rooms.get(currentRoomID-1);
         //check to see if room is empty
