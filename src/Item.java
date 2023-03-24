@@ -1,8 +1,8 @@
 public class Item {
-    private int itemId;
-    private String itemName;
-    private String itemDesc;
-    private int itemLocation;
+    private final int itemId;
+    private final String itemName;
+    private final String itemDesc;
+    private final int itemLocation;
 
     public Item(int itemId, String itemName, String itemDesc, int itemLocation) {
         this.itemId = itemId;
@@ -11,7 +11,7 @@ public class Item {
         this.itemLocation = itemLocation;
     }
 
-    //getters setters toString
+    //getters and toString
     //need to clean up
     @Override
     public String toString() {

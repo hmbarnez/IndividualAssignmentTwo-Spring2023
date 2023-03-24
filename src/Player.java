@@ -3,11 +3,10 @@
 import java.util.ArrayList;
 
 public class Player {
-    private String name;
+    private final String name;
     private int currentRoomID;
-    private ArrayList<Room> rooms;
-
-    public ArrayList<Item> playerInventory;
+    private final ArrayList<Room> rooms;
+    private final ArrayList<Item> playerInventory;
 
     public Player(String name, Map map) {
         this.name = name;
@@ -28,7 +27,7 @@ public class Player {
             case "e" -> index = 2;
             case "w" -> index = 3;
             default -> {
-                System.out.println("Error! Try: 'N' 'S' 'E' or 'W'!");
+                System.err.println("Error! Try: 'N' 'S' 'E' or 'W'!");
                 return;
             }
         }
@@ -43,8 +42,11 @@ public class Player {
             //prints the description of the room being moved to
             System.out.println(currentRoom.getRoomDescription() + " "+currentRoom.getRoomId());
 
-            //TEST PUZZLES HERE
-            //if(currentRoom.)
+            //check to see if the room has a puzzle and if that puzzle has been solved already
+            //i plan to maybe change room class
+            if((currentRoom.getPuzzle().getPuzzId() != 0) && !(currentRoom.getPuzzle().getHasBeenSolved())){
+                currentRoom.getPuzzle().solvePuzzle();
+            }
 
             //check to see if the room has been visited
             if (currentRoom.isVisited()){

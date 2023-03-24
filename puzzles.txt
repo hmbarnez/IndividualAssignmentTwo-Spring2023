@@ -1,2 +1,2 @@
-1~Math Problem~This is a math puzzle! What is the cubic root of 512?? ~8~2
-2~History Question~This is a history puzzle! What year did man first land on the moon?? ~1969~3
+1~Math Problem~This is a math puzzle! What is the cubic root of 512?? ~8~3
+2~History Question~This is a history puzzle! What year did man first land on the moon?? ~1969~4

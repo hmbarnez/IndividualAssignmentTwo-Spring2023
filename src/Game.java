@@ -8,7 +8,7 @@ public class Game {
     }
 
     public static void newGame(){
-        //new map reads text files and creates rooms array list
+        //new map reads text files and player class
         Map map = new Map();
         Player p1 = new Player("p1",map);
 
@@ -26,18 +26,18 @@ public class Game {
                 p1.move(userInput);
             } else if (userInput.equals("explore")) { //explore command prints current room inventory
                 p1.exploreRoomInventory();
-            } else if (userInput.equals("inventory")) { //
+            } else if (userInput.equals("inventory")) { // inventory command
                 p1.viewPlayerInventory();
-            } else if (userInput.equalsIgnoreCase("exit")) { //exit command ends game
+            } else if (userInput.equals("exit")) { //exit command ends game
                 System.out.println("bye");
                 gameOver = true;
 
-                // two input commands
-            } else if (userInput.contains("pickup")) {
+                // two input commands uses splitinput() method to separate command name from command parameter
+            } else if (userInput.contains("pickup")) {// pickup command
                 p1.pickupItem(splitInput(userInput));
-            } else if (userInput.contains("drop")) {
+            } else if (userInput.contains("drop")) {//drop command
                 p1.dropItem(splitInput(userInput));
-            } else if (userInput.contains("inspect")){
+            } else if (userInput.contains("inspect")){//inspect command
                 p1.inspectItem(splitInput(userInput));
 
 
@@ -49,10 +49,10 @@ public class Game {
         }
     }
 
-    // probably a better existing method but this just split the input in 2 parts after the first word
-    //created for items that are two words iq
+    // probably a better existing method but this just split the input in 2 parts after the first word for the format I need
+    //created for mainly to clean up main method
     public static String splitInput(String input){
-        String[] splitput = input.split(" ",2);
-        return splitput[1];
+        String[] split = input.split(" ",2);
+        return split[1];
     }
 }

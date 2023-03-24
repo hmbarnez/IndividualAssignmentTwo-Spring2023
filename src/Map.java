@@ -27,17 +27,32 @@ public class Map {
                 directions[3] = Integer.parseInt(roomArray[4]);
                 boolean isVisited = Boolean.parseBoolean(roomArray[5]);
                 String roomDesc = roomArray[6];
-                ArrayList<Item> tempItems = new ArrayList<>();
 
+                //need to maybe change the logic here but im going with adding a blank puzzle to rooms without a puzzle
+                //TODO maybe create puzzleRoom child class so i dont have rooms with empty puzzle placeholders
+                int puzzleId = Integer.parseInt(roomArray[7]);
+                Puzzle tempPuzz = null;
+                if (!(puzzleId==0)){
+                    for (Puzzle x: puzzles){
+                        if(puzzleId == x.getPuzzId()){
+                            tempPuzz = x;
+                            System.out.println(x);
+                        }
+                    }
+                }else{
+                    //empty puzzle place holder for rooms without puzzles
+                    tempPuzz = new Puzzle(0,"","","",0);
+                }
+
+                ArrayList<Item> tempItems = new ArrayList<>();
                 //check to see if room has an item(s) in it
                 for(Item x: items){
                     if(x.getItemLocation() == roomId){
                         tempItems.add(x);
-
                     }
                 }
 
-                roomsList.add(new Room(roomId,directions,isVisited,roomDesc,tempItems));
+                roomsList.add(new Room(roomId,directions,isVisited,roomDesc,tempItems,tempPuzz));
             }
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
@@ -79,6 +94,7 @@ public class Map {
                 String puzzDesc = lineSplit[2];
                 String puzzAns = lineSplit[3];
                 int numAttempts = Integer.parseInt(lineSplit[4]);
+
                 puzzles.add(new Puzzle(puzzId,puzzName,puzzDesc,puzzAns,numAttempts));
             }
         } catch (FileNotFoundException e) {
