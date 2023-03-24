@@ -39,10 +39,8 @@ public class Player {
             System.out.println(currentRoom.getRoomDescription() + " "+currentRoom.getRoomId());
 
             //test to print room inventory
-            System.out.println(currentRoom.getRoomInventory());
-
-
-            System.out.println(this.playerInventory);
+//            System.out.println(currentRoom.getRoomInventory());
+//            System.out.println(this.playerInventory);
 
             //check to see if the room has been visited
             if (currentRoom.isVisited()){
@@ -52,10 +50,7 @@ public class Player {
             currentRoom.setVisited(true);
         }
 
-
-
     }
-
 
     //Item methods
     public void pickupItem(String nameToPickup){
@@ -68,9 +63,9 @@ public class Player {
             //cycles through room inventory and compares name of item to drop to room inventory item names
             for(Item x: room.getRoomInventory()){
                 if(x.getItemName().equalsIgnoreCase(nameToPickup.toLowerCase())){
+                    System.out.println("You picked up a "+ x.getItemName() +"!");
                     this.playerInventory.add(x);
                     room.removeItem(x);
-                    System.out.println("You picked up a "+ nameToPickup +"!");
                     pickedSomethingUp = true;
                     break;
                 }
@@ -85,18 +80,57 @@ public class Player {
     }
 
 
+    public void dropItem(String itemToDrop){
+        Room room = rooms.get(currentRoomID-1);
+        if(!playerInventory.isEmpty()){
+            boolean droppedSomething = false;
+            for (Item x: playerInventory){
+                if (x.getItemName().equalsIgnoreCase(itemToDrop)) {
+                    System.out.println("You dropped a "+ x.getItemName());
+                    room.addItem(x);
+                    playerInventory.remove(x);
+                    droppedSomething = true;
+                    break;
+                }
+            }
+            if(!droppedSomething){
+                System.out.println("That item is not in your inventory!");
+            }
+        }else{
+            System.out.println("There is nothing in your inventory!");
+        }
+    }
 
 
+    public void inspectItem(String s) {
+        //flag to see if the item is found or not
+        boolean isFound = false;
+        for (Item x: playerInventory){
+            if(x.getItemName().equalsIgnoreCase(s)){
+                System.out.println(x.getItemDesc());
+                isFound = true;
+            }
+        }
+        //if item is not found in the player's inventory this msg is displayed
+        if(!isFound)
+            System.out.println("That item is not in your inventory");
+    }
 
-   // public String
-
-    public void printRoomInventory(){
+    public void exploreRoomInventory(){
         Room currentRoom = this.rooms.get(this.getCurrentRoomID() - 1);
-        System.out.println(currentRoom.getRoomInventory());
+        if(!currentRoom.getRoomInventory().isEmpty() ){
+            System.out.println(currentRoom.getRoomInventory());
+        }else{
+            System.out.println("There are no items in this room.");
+        }
     }
 
     public void printPlayerInventory(){
-        System.out.println(this.playerInventory);
+        if(!this.playerInventory.isEmpty()){
+            System.out.println(this.playerInventory);
+        }else{
+            System.out.println("You didn’t pickup any items yet!");
+        }
     }
 
 

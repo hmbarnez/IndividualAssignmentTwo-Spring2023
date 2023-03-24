@@ -26,6 +26,10 @@ public class Item {
         return itemName;
     }
 
+    public String getItemDesc() {
+        return itemDesc;
+    }
+
     public int getItemId() {
         return itemId;
     }

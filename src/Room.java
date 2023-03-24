@@ -36,6 +36,9 @@ public class Room {
             }
         }
     }
+    public void addItem(Item item){
+        this.roomInventory.add(item);
+    }
 
     public int getRoomId() {
         return roomId;
