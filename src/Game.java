@@ -1,10 +1,13 @@
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game {
 
     public static void main(String[] args) {
+        newGame();
+    }
+
+    public static void newGame(){
         //new map reads text files and creates rooms array list
         Map map = new Map();
         Player p1 = new Player("p1",map);
@@ -19,22 +22,22 @@ public class Game {
             String userInput = scan.nextLine().toLowerCase();
 
             //single input commands first
-            if (userInput.length() == 1) {
+            if (userInput.length()==1) {
                 p1.move(userInput);
             } else if (userInput.equals("explore")) { //explore command prints current room inventory
                 p1.exploreRoomInventory();
+            } else if (userInput.equals("inventory")) { //
+                p1.viewPlayerInventory();
             } else if (userInput.equalsIgnoreCase("exit")) { //exit command ends game
                 System.out.println("bye");
                 gameOver = true;
-            } else if (userInput.equals("inventory")) { //
-                p1.printPlayerInventory();
 
-            // two input commands
+                // two input commands
             } else if (userInput.contains("pickup")) {
                 p1.pickupItem(splitInput(userInput));
             } else if (userInput.contains("drop")) {
                 p1.dropItem(splitInput(userInput));
-            }else if(userInput.contains("inspect")){
+            } else if (userInput.contains("inspect")){
                 p1.inspectItem(splitInput(userInput));
 
 

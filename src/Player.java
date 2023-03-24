@@ -43,9 +43,8 @@ public class Player {
             //prints the description of the room being moved to
             System.out.println(currentRoom.getRoomDescription() + " "+currentRoom.getRoomId());
 
-            //test to print room inventory
-//            System.out.println(currentRoom.getRoomInventory());
-//            System.out.println(this.playerInventory);
+            //TEST ITEMS AND PUZZLES HERE
+
 
             //check to see if the room has been visited
             if (currentRoom.isVisited()){
@@ -131,7 +130,7 @@ public class Player {
         }
     }
 
-    public void printPlayerInventory(){
+    public void viewPlayerInventory(){
         if(!this.playerInventory.isEmpty()){
             System.out.println(this.playerInventory);
         }else{
