@@ -16,6 +16,7 @@ public class Map {
             Scanner scan = new Scanner(new File("map.txt"));
             ArrayList<Item> items = readItems();
             ArrayList<Puzzle> puzzles = readPuzzles();
+
             while(scan.hasNextLine()){
                 int[] directions = new int[4];
                 String[] roomArray = scan.nextLine().split("~");
@@ -36,7 +37,6 @@ public class Map {
                     for (Puzzle x: puzzles){
                         if(puzzleId == x.getPuzzId()){
                             tempPuzz = x;
-                            System.out.println(x);
                         }
                     }
                 }else{
@@ -60,7 +60,7 @@ public class Map {
 //        for (Room x: roomsList){
 //            System.out.println(x);
 //        }
-        System.out.println("You are in the "+roomsList.get(0).getRoomDescription());
+        System.out.println("You are in the "+roomsList.get(0).getRoomDescription()+" "+roomsList.get(0).getRoomId());
         return roomsList;
     }
 
