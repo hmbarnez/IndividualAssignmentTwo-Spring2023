@@ -1,8 +1,9 @@
 //Nothing too crazy in here yet just added it for further assignments
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Player {
+public class Player implements Serializable {
     private final String name;
     private int currentRoomID;
     private final ArrayList<Room> rooms;
@@ -149,7 +150,21 @@ public class Player {
         return currentRoomID;
     }
 
+    public ArrayList<Item> getPlayerInventory() {
+        return playerInventory;
+    }
+
     public void setCurrentRoomID(int currentRoomID) {
         this.currentRoomID = currentRoomID;
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "name='" + name + '\'' +
+                ", currentRoomID=" + currentRoomID +
+                //", rooms=" + rooms +
+                ", playerInventory=" + playerInventory +
+                '}';
     }
 }

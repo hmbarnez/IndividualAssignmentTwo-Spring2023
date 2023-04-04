@@ -1,13 +1,14 @@
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class Puzzle {
+public class Puzzle implements Serializable {
     private final int puzzId;
     private final String puzzName;
     private final String puzzAnswer;
     private final String puzzDesc;
     private final int numAttempts;
     private boolean hasBeenSolved;
-
+    //TODO need to add hasBeenSolved to the puzzles.txt file for saving purposes later
 
     public Puzzle(int puzzId, String puzzName, String puzzDesc, String puzzAnswer, int numAttempts) {
         this.puzzId = puzzId;

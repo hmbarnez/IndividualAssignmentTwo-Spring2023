@@ -1,10 +1,11 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 //map class only used for reading the text file and returning array list rooms/items/puzzles
-public class Map {
+public class Map implements Serializable {
     private final ArrayList<Room> roomsList;
     public Map() {
         roomsList = new ArrayList<>();
@@ -30,7 +31,6 @@ public class Map {
                 String roomDesc = roomArray[6];
 
                 //need to maybe change the logic here but im going with adding a blank puzzle to rooms without a puzzle
-                //TODO maybe create puzzleRoom child class so i dont have rooms with empty puzzle placeholders
                 int puzzleId = Integer.parseInt(roomArray[7]);
                 Puzzle tempPuzz = null;
                 if (!(puzzleId==0)){

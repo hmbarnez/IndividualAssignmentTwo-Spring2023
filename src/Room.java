@@ -1,8 +1,9 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 
-public class Room {
+public class Room implements Serializable {
     private final int roomId;
     public int[] roomDirections;
     private boolean isVisited;
