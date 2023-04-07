@@ -24,6 +24,8 @@ public class Game {
             System.out.println("\n------------------------------------------------------");
             System.out.println("Enter direction to move (N,S,E,W) or 'Exit' to leave: ");
             String userInput = scan.nextLine().toLowerCase();
+            //System.out.println(userInput);
+            //System.out.println(splitInput(userInput));
 
             //single input commands first
             if (userInput.length()==1) {
@@ -38,11 +40,12 @@ public class Game {
 
                 //SAVE LOAD TESTING
             } else if (userInput.contains("save game")) {
-                saveGame("testFile");
+                saveGame(splitInput(userInput));
             } else if (userInput.contains("load game")){
                 p1 = loadGame("testFile");
             } else if (userInput.contains("printpl")){
                 System.out.println(p1);
+            //add another else if statement here
 
                 // two input commands uses splitinput() method to separate command name from command parameter
             } else if (userInput.contains("pickup")) {// pickup command
@@ -65,7 +68,9 @@ public class Game {
     // probably a better existing method but this just split the input in 2 parts after the first word for the format I need
     //created for mainly to clean up main method
     public static String splitInput(String input){
-        String[] split = input.split(" ",2);
+        String[] split = input.split(" ",3);
+        if(split.length == 3)
+            return split[2];
         return split[1];
     }
 
@@ -75,23 +80,21 @@ public class Game {
         try {
             ObjectOutputStream writer = new ObjectOutputStream(new FileOutputStream("saves/" + saveName + ".bin"));
             writer.writeObject(p1);
-            //writer.writeObject(map);
             System.out.println("game saved");
             System.exit(0);
         } catch (IOException e) {
             e.printStackTrace();
-            System.err.println("something bad happened");
         }
     }
 
     public static Player loadGame(String saveName){
-        Object temp = null;
+        Object temp = p1;
         try {
             ObjectInputStream loader = new ObjectInputStream(new FileInputStream("saves/" + saveName + ".bin"));
             temp = loader.readObject();
         } catch (IOException e) {
-            e.printStackTrace();
-            System.err.println("uh oh");
+            System.err.println("That save name does not exist!");
+            //return p1;
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }

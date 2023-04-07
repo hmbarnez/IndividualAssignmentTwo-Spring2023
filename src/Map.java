@@ -14,7 +14,7 @@ public class Map implements Serializable {
     public ArrayList<Room> readRooms(){
 
         try {
-            Scanner scan = new Scanner(new File("map.txt"));
+            Scanner scan = new Scanner(new File("MapInformation/map.txt"));
             ArrayList<Item> items = readItems();
             ArrayList<Puzzle> puzzles = readPuzzles();
 
@@ -67,7 +67,7 @@ public class Map implements Serializable {
     private ArrayList<Item> readItems(){
         ArrayList<Item> items = new ArrayList<>();
         try {
-            Scanner scan = new  Scanner(new File("items.txt"));
+            Scanner scan = new  Scanner(new File("MapInformation/items.txt"));
             while(scan.hasNextLine()){
                 String[] lineSplit = scan.nextLine().split("~");
                 int itemId = Integer.parseInt(lineSplit[0]);
@@ -86,7 +86,7 @@ public class Map implements Serializable {
     private ArrayList<Puzzle> readPuzzles(){
         ArrayList<Puzzle> puzzles = new ArrayList<>();
         try {
-            Scanner scan = new  Scanner(new File("puzzles.txt"));
+            Scanner scan = new  Scanner(new File("MapInformation/puzzles.txt"));
             while(scan.hasNextLine()){
                 String[] lineSplit = scan.nextLine().split("~");
                 int puzzId = Integer.parseInt(lineSplit[0]);

@@ -8,12 +8,18 @@ public class Player implements Serializable {
     private int currentRoomID;
     private final ArrayList<Room> rooms;
     private final ArrayList<Item> playerInventory;
+    private int  maxHP;
+    private int attackDmg;
+    private Armor armor;
+    private Weapon weapon;
 
     public Player(String name, Map map) {
         this.name = name;
         this.currentRoomID = 1;
         this.rooms = map.readRooms();
         this.playerInventory = new ArrayList<>();
+        this.maxHP = 100;
+        this.attackDmg = 10;
     }
 
 
@@ -141,10 +147,10 @@ public class Player implements Serializable {
         }
     }
 
+    public static void equipWeapon(int weaponId){
 
-    public String getName() {
-        return name;
     }
+
 
     public int getCurrentRoomID() {
         return currentRoomID;
@@ -158,6 +164,9 @@ public class Player implements Serializable {
         this.currentRoomID = currentRoomID;
     }
 
+    public String getName() {
+        return name;
+    }
     @Override
     public String toString() {
         return "Player{" +
@@ -167,4 +176,5 @@ public class Player implements Serializable {
                 ", playerInventory=" + playerInventory +
                 '}';
     }
+
 }
